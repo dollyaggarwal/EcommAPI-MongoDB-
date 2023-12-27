@@ -1,0 +1,12 @@
+ProductController
+Get Products
+Add a Product
+Get one Product
+Rate Product
+Add items to cart
+Get items of cart
+Remove items from cart.
+
+UserController
+Signup - Emali, Name Password, TypeOfUser(customer, seller)
+Signin - (Emali, Password)

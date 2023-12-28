@@ -7,7 +7,7 @@ export default class ProductController{
   }
     async getAllProduct(req,res){
       try{
-      const products =  this.productRepository.getAll();
+      const products = await this.productRepository.getAll();
       res.status(200).send(products);
       }catch(err){
         console.log(err);
@@ -18,10 +18,9 @@ export default class ProductController{
    async addProduct(req,res){
       try{
       const { name, price, sizes} = req.body;
-      
-      console.log(req.file.filename)
-      const newProduct = new ProductModel(name,null, 
-      req.file.filename,null, parseFloat(price), sizes.split(','));
+      const newProduct = new ProductModel(name,null, parseFloat(price),
+      req.file.filename, null, sizes.split(',')
+    );
 
       const createdProduct = await this.productRepository.add(newProduct);
       res.status(201).send(createdProduct);
@@ -31,10 +30,10 @@ export default class ProductController{
     }
   }
     
-    getOneProduct(req,res){
+   async getOneProduct(req,res){
       try{
         const id = req.params.id;
-        const product =  this.productRepository.get(id);
+        const product = await this.productRepository.get(id);
         if(!product){
           res.status(404).send("Product not found");
         }
@@ -48,27 +47,32 @@ export default class ProductController{
         }
     }
 
-    rateProduct(req,res,next){
-
+    async rateProduct(req,res,next){
       try{
-      const userID = req.query.userID;
-      const productID = req.query.productID;
-      const rating = req.query.rating;
+      const userID = req.userID;
+      const productID = req.body.productID;
+      const rating = req.body.rating;
     
-        ProductModel.rateProduct(userID, productID, rating);
+        await this.productRepository.rate(userID, productID, rating);
      
         return res.status(200).send('Rating has been added');
      } 
     catch(err){
+      console.log(err);
           next(err);
     }
     }
 
-    filterProducts(req, res){
+    async filterProducts(req, res){
+      try{
       const minPrice = req.query.minPrice;
       const maxPrice = req.query.maxPrice;
       const category = req.query.category;
-      const result = ProductModel.filter(minPrice, maxPrice, category);
+      const result =await this.productRepository.filter(minPrice, maxPrice, category);
       res.status(200).send(result);
+    }catch(err){
+      console.log(err);
+      res.status(500).send("Something went wrong");
     }
+}
 }

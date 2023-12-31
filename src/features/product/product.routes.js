@@ -20,13 +20,16 @@ productRouter.get('/', (req, res) =>{
 productRouter.post('/', upload.single('imageUrl'),(req, res) =>{
     productController.addProduct(req, res)
 });
-productRouter.get('/:id',(req, res) =>{
-    productController.getOneProduct(req, res)
-});
+productRouter.get('/averagePrice', (req, res, next) =>{
+    productController.averagePrice(req, res)
+})
 
-//localhost:3200/api/products/filter?minPrice=10&maxPrice=20&category=Category1
+//localhost:3300/api/products/filter?minPrice=10category=Cat1
 productRouter.post('/filter',(req, res) =>{
     productController.filterProducts(req, res)
+});
+productRouter.get('/:id',(req, res) =>{
+    productController.getOneProduct(req, res)
 });
 
 export default productRouter;

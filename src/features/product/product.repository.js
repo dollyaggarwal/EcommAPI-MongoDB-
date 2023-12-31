@@ -46,24 +46,24 @@ class ProductRepository{
         }
     }
 
-    async filter(minPrice, maxPrice, category){
+    async filter(minPrice, categories){
         try{
             const db = getDB();
-            const collection = db.collection(this.collection);
-            let filterExpression = {};
+            const collection = db.collection(this.collection); 
+            let filterExpression={};
             if(minPrice){
-                filterExpression.price = {$gte:parseFloat(minPrice)}
+                filterExpression.price = {$gte: parseFloat(minPrice)}
             }
-            if(maxPrice){
-                filterExpression.price = {...filterExpression.price,$lte:parseFloat(maxPrice)}
-            }
-            if(category){
-                filterExpression.category = category;
-            }
-            return collection.find(filterExpression).toArray();
+            categories = JSON.parse(categories.replace(/'/g,'"'));
+            if(categories){
+                filterExpression={$or:[{category:{$in: categories}}, filterExpression]}
+                // filterExpression.category=category
+            }                                       //in project operator , 1 for inclusion of attribute and 0 means exclusion of an attribute in result
+            return collection.find(filterExpression).project({name:1, price:1, _id:0, ratings:{$slice:1}}).toArray();
+
         }catch(err){
             console.log(err);
-            throw new ApplicationError('Something went wrong in database', 500);
+            throw new ApplicationError("Something went wrong with database", 500);    
         }
     }
     // async rate(userID, productID, rating){
@@ -104,6 +104,25 @@ class ProductRepository{
             await collection.updateOne({_id: new ObjectId(productID),},
             {$push:{ratings:{userID:new ObjectId(userID), rating}}
         })    
+        }catch(err){
+            console.log(err);
+            throw new ApplicationError('Something went wrong in database', 500);
+        }
+    }
+
+    async averageProductPricePerCategory(){
+        try{
+            const db = getDB();
+           return await db.collection(this.collection)
+            .aggregate([
+                {
+                    //Stage 1: Get average price per category
+                    $group:{
+                        _id:"$category",
+                        averagePrice:{$avg:"$price"}
+                    }
+                }
+            ]).toArray();
         }catch(err){
             console.log(err);
             throw new ApplicationError('Something went wrong in database', 500);

@@ -4,6 +4,7 @@ import swagger, { serve } from 'swagger-ui-express';
 import cors from 'cors';
 
 import productRouter from './src/features/product/product.routes.js';
+import orderRouter from './src/features/order/order.routes.js';
 import userRouter from './src/features/user/user.routes.js';
 import cartRouter from './src/features/cartitems/cartitems.routes.js';
 import bodyParser from 'body-parser';
@@ -53,6 +54,9 @@ server.use(loggerMiddleware);
 
 //for all requests related to product, redirect to product routes.
 server.use('/api/products',jwtAuth, productRouter);
+
+//for all requests related to order, redirect to order routes.
+server.use('/api/orders',jwtAuth, orderRouter);
 
 //for all requests related to user, redirect to user routes.
 server.use('/api/cartItems',jwtAuth, cartRouter);

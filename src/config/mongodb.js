@@ -6,10 +6,11 @@ dotenv.config();
 
 const url = process.env.DB_URL;
 
-
 let client;
 export const connectToMongoDB = ()=>{
-    MongoClient.connect(url)
+    MongoClient.connect(url,{
+            dbName:"EcommerceDB",
+    })
         .then(clientInstance=>{
             client=clientInstance
             console.log("Mongodb is connected");

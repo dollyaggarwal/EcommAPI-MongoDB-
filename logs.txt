@@ -312,3 +312,9 @@
 {"Service":"request-logging","level":"info","message":"/api/products/-{}"}
 {"Service":"request-logging","level":"info","message":"/api/products/-{}"}
 {"Service":"request-logging","level":"info","message":"/api/orders-{}"}
+{"Service":"request-logging","level":"info","message":"/api/users/signup-{\"email\":\"seller7@ecom.com\",\"password\":\"Password7\",\"name\":\"Seller User7\",\"type\":\"seller\"}"}
+{"Service":"request-logging","level":"info","message":"/api/users/signup-{\"email\":\"seller1@ecom.com\",\"password\":\"Password1\",\"name\":\"Seller User1\",\"type\":\"seller\"}"}
+{"Service":"request-logging","level":"info","message":"/api/products/-{}"}
+{"Service":"request-logging","level":"info","message":"/api/products/-{}"}
+{"Service":"request-logging","level":"info","message":"/api/products/-{}"}
+{"Service":"request-logging","level":"info","message":"/api/products/-{}"}

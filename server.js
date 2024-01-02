@@ -13,6 +13,7 @@ import apiDocs from './swagger.json'assert {type:'json'};
 import loggerMiddleware from './src/middlewares/logger.middleware.js';
 import { ApplicationError } from './error-handler/applicationError.js';
 import {connectToMongoDB} from './src/config/mongodb.js';
+import { connectUsingMongoose } from './src/config/mongooseconfig.js';
 
 const server = express();
 server.use(bodyParser.json());
@@ -86,4 +87,5 @@ server.use((req, res) =>{
 server.listen(3300,()=>{
     console.log("Server is running at 3300");
     connectToMongoDB();
+    //connectUsingMongoose();
 });

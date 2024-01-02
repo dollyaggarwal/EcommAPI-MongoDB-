@@ -8,6 +8,7 @@ export default class ProductModel{
         imageUrl,
         category,
         sizes,
+        stock,
         id
       ) {
       
@@ -17,6 +18,7 @@ export default class ProductModel{
         this.imageUrl = imageUrl;
         this.category = category;
         this.sizes = sizes;
+        this.stock = stock;
         this._id = id;
       }    
  

@@ -32,7 +32,8 @@ export class CartItemsController {
     async delete(req, res){
         const userID = req.userID;
         const cartItemID = req.params.id;
-        const isDeleted = await this.cartItemsRepository.delete(userID,cartItemID);
+       
+        const isDeleted = await this.cartItemsRepository.delete(parseInt(cartItemID,10),userID);
         if(!isDeleted)
         return res.status(404).send('Item not found');
         return res.status(200).send('Cart Item is removed');

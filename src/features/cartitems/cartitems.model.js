@@ -6,7 +6,7 @@ export default class CartItemModel{
         this.productID = productID;
         this.userID = userID;
         this.quantity = quantity;
-        this.id = id;
+        this._id = id;
     }
 
     static add(productID, userID, quantity) {

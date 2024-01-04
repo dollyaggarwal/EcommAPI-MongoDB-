@@ -6,12 +6,9 @@ const url = process.env.DB_URL;
 export const connectUsingMongoose =  async() =>{
     try{
     await mongoose.connect(url, {
-
-      
-
+            dbName:"EcommerceDB",
             useNewUrlParser:true,
-            useUnifiedTopology:true
-        
+            useUnifiedTopology:true       
     });
     console.log("Mongodb connected using mongoose");
 }catch(err){

@@ -43,18 +43,18 @@ export default class CartItemsRepository{
         }
     }
 
-    async delete(userID,cartItemID){
+    async delete(cartItemID,userID){
         try{
             const db = getDB();
             const collection = db.collection(this.collection);
-            const result= await collection.deleteOne({_id: new ObjectId(cartItemID), userID: new ObjectId(userID)});
+            const result= await collection.deleteOne({_id: cartItemID, userID: new ObjectId(userID)});
                 return result.deletedCount>0;
         }catch(err){
             console.log(err);
             throw new ApplicationError('Something went wrong in database', 500);
         }
     }
-
+    
     async getNextCounter(db){
 
         const resultDocument = await db.collection("counters").findOneAndUpdate(

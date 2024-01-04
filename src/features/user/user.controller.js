@@ -8,7 +8,23 @@ export default class UserController {
   constructor(){
     this.userRepository = new UserRepository();
   }
-  async signUp(req, res) {
+
+  async resetPassword(req, res){
+    try{
+
+      const {newPassword} = req.body;
+      const hashedPassword = await bcrypt.hash(newPassword, 12);
+      const userID = req.userID;
+      await this.userRepository.resetPassword(userID, hashedPassword);
+      res.status(200).send("Password is updated");
+
+    }catch(err){
+      console.log(err);
+      return res.status(200).send("Something went wrong");
+    }
+  }
+  async signUp(req, res , next) {
+    try{
     const {
       name,
       email,
@@ -26,6 +42,9 @@ const hashedPassword = await bcrypt.hash(password, 12)
     );
     await this.userRepository.signUp(user);
     res.status(201).send(user);
+    }catch(err){
+     next(err);
+    }
   }
 
   async signIn(req, res, next) {

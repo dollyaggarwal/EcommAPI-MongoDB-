@@ -403,3 +403,7 @@
 {"Service":"request-logging","level":"info","message":"/api/users/signup-{\"name\":\"John Doe4\",\"email\":\"john.doe54@ecom.com\",\"password\":\"john@123456\"}"}
 {"Service":"request-logging","level":"info","message":"/api/users/signup-{\"name\":\"John Doe\",\"email\":\"john.doe@ecom.com\",\"password\":\"john@12345\"}"}
 {"Service":"request-logging","level":"info","message":"/api/users/signup-{\"name\":\"John Doe\",\"email\":\"john.doe@ecom.com\",\"password\":\"john@12345\"}"}
+{"Service":"request-logging","level":"info","message":"/api/users/signup-{\"name\":\"John Doe1\",\"email\":\"john.doe1@ecom.com\",\"password\":\"john@123456\"}"}
+{"Service":"request-logging","level":"info","message":"/api/products/rate-{\"productID\":\"659414dfa025a86feeafc13f\",\"rating\":3.2}"}
+{"Service":"request-logging","level":"info","message":"/api/products/rate-{\"productID\":\"659414dfa025a86feeafc13f\",\"rating\":5}"}
+{"Service":"request-logging","level":"info","message":"/api/products/rate-{\"productID\":\"65941584e8d5c4ad9d7d9a24\",\"rating\":5.5}"}

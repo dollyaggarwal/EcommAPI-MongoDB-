@@ -7,6 +7,7 @@ import productRouter from './src/features/product/product.routes.js';
 import orderRouter from './src/features/order/order.routes.js';
 import userRouter from './src/features/user/user.routes.js';
 import cartRouter from './src/features/cartitems/cartitems.routes.js';
+import likeRouter from './src/features/like/like.routes.js';
 import bodyParser from 'body-parser';
 import jwtAuth from './src/middlewares/jwt.middleware.js';
 import apiDocs from './swagger.json'assert {type:'json'};
@@ -15,6 +16,7 @@ import { ApplicationError } from './error-handler/applicationError.js';
 import {connectToMongoDB} from './src/config/mongodb.js';
 import { connectUsingMongoose } from './src/config/mongooseconfig.js';
 import mongoose, { mongo } from 'mongoose';
+
 
 const server = express();
 server.use(bodyParser.json());
@@ -62,6 +64,8 @@ server.use('/api/orders',jwtAuth, orderRouter);
 
 //for all requests related to user, redirect to user routes.
 server.use('/api/cartItems',jwtAuth, cartRouter);
+//for all requests related to user, redirect to user routes.
+server.use('/api/likes',jwtAuth, likeRouter);
 
 //for all requests related to user, redirect to user routes.
 server.use('/api/users', userRouter);

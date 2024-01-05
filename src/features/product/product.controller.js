@@ -17,13 +17,13 @@ export default class ProductController{
     }
    async addProduct(req,res){
       try{
-      const { name, price, sizes,stock} = req.body;
+      const { name, price,categories, sizes,stock} = req.body;
       const newProduct = new ProductModel(name,null, parseFloat(price),
-      req.file.filename, null, sizes.split(','),parseFloat(stock)
+      req.file.filename, categories, sizes.split(','),parseFloat(stock)
     );
 
       const createdProduct = await this.productRepository.add(newProduct);
-      res.status(201).send(createdProduct);
+      return res.status(201).send(createdProduct);
     }catch(err){
       console.log(err);
       res.status(500).send("Something went wrong");

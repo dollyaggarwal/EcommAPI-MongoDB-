@@ -25,11 +25,13 @@ MongoDB: NoSQL database for efficient data storage.
 
 npm start
 
-The server should now be running on http://localhost:3300 🌐.
+The server should now be running on https://ecommerceapis-zxp0.onrender.com/ 🌐.
 
 ## Acknowledgments
 
 Special thanks to the fantastic tools provided by [Node.js](https://nodejs.org/), [Express.js](https://expressjs.com/), and [MongoDB](https://www.mongodb.com/) for making this backend system possible. 🙌
+
+Feel free to contribute by submitting issues or pull requests. Happy coding! 🚀
 
 
 

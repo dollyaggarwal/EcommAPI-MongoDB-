@@ -24,7 +24,7 @@ Run the server
 
 npm start
 
-The server should now be running on http://localhost:3000.
+The server should now be running on http://localhost:3300.
 
 Acknowledgments
 

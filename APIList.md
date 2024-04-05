@@ -14,6 +14,7 @@ Signin - (Emali, Password)
 
 //aggregation pipeline
 
+```javascript
 db.Products.aggregate([
     //1. Create documents for ratings
     {
@@ -27,7 +28,8 @@ db.Products.aggregate([
         }
     }
 ])
-
+```
+```javascript
 db.Products.aggregate([
     //1. Project name of Product, and countOfRating
     {
@@ -45,3 +47,4 @@ db.Products.aggregate([
         $limit:1
     }
 ])
+```
